@@ -13,23 +13,88 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.fdr {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
-    -webkit-box-flex: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
+}
+
+.popular-collections__card-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.live-auctions__cards {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.how-it-works__block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.how-it-works__illustration {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.top-creators__creators {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.card {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.cards {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 30px;
 }
 
 .menu__link {
     font-size: 14px;
-    line-height: 120%;
-    color: rgba(25, 24, 37, 0.5);
+    line-height: 260%;
+    color: #A48EA9;
 }
 
 .autorization__login-text {
-    font: 700 14px CircularStd;
+    font: 700 14px WorkSans;
 }
 
 .logo {
@@ -40,60 +105,109 @@
 }
 
 .logo_txt {
-    font: 900 24px CircularStd;
+    font: 900 20px WorkSans;
     color: #191825;
-    line-height: 160%;
+    line-height: 180%;
+}
+
+h1 {
+    font: 700 14px WorkSans;
+    color: #96839B;
+    font-size: 32px;
+    line-height: 260%;
+}
+
+h2 {
+    font: 700 14px WorkSans;
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C6BFC8;
+}
+
+h3 {
+    font: 700 14px WorkSans;
+    font-size: 28px;
+    color: #96839B;
+}
+
+h4 {
+    font: 700 14px WorkSans;
+    text-align: center;
+    color: #96839B;
+}
+
+body {
+    background: #251928;
+    font: 400 16px WorkSans;
+    color: #76607A;
 }
 
 .button {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 0;
+    padding: 24px 65px;
+    border: 1px solid #FFCE4E;
+}
+
+.popular-collections__card-info {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    padding: 16px 32px;
-    background: #FFFFFF;
-    border-radius: 100px;
-    gap: 8px;
+    width: 100%;
 }
 
-h1 {
-    font: 700 14px CircularStd;
-    color: rgb(25, 24, 37);
-    font-size: 66px;
-    line-height: 120%;
-}
-
-h2 {
-    font: 700 14px CircularStd;
-    font-size: 23px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #F85E9F;
-}
-
-h3 {
-    font: 700 14px CircularStd;
-    font-size: 44px;
-    color: rgb(25, 24, 37);
-}
-
-h4 {
-    font: 700 14px CircularStd;
-    text-align: center;
-    color: rgb(25, 24, 37);
-}
-
-.footer {
+.img-data {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    background: #251928;
+}
+
+.card-bid {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.card-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+}
+
+.card-autor {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.card-likes {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
 }
 
 .footer__logo img {
@@ -161,4 +275,11 @@ h4 {
 .footer__link {
     font-size: clamp(1rem, 4vw, 1.375rem);
     line-height: 252%;
+}
+
+.menu__list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 5vw;
 }
