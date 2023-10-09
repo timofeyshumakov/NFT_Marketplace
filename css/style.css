@@ -26,10 +26,6 @@ img {
 }
 
 @media screen and (min-width: 769px) {
-    .top-creators__creators {
-        grid-template-columns: 1fr 1fr;
-    }
-
     .menu-burger {
         display: none;
     }
@@ -65,16 +61,6 @@ img {
 
     .menu-burger {
         display: block;
-    }
-
-    .top-creators__creators {
-        display: grid;
-        grid-template-columns: 1fr;
-    }
-
-    .clients__container {
-        display: grid;
-        grid-template-columns: 1fr;
     }
 
     .how-it-works__block {
@@ -123,12 +109,6 @@ img {
     align-items: center;
 }
 
-.live-auctions__cards {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
 .top-creators__creator-photo img {
     width: clamp(3.125rem, 1vw, 6.25rem);
 }
@@ -143,7 +123,6 @@ img {
 }
 
 .top-creators__creators {
-    display: grid;
     gap: clamp(1.25rem, 8vw, 3.75rem);
 }
 
@@ -162,15 +141,7 @@ img {
 }
 
 .cards {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     gap: 30px;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
 }
 
 .menu__link {
@@ -368,4 +339,8 @@ body {
     display: -ms-flexbox;
     display: flex;
     gap: 5vw;
+}
+
+.clients__img {
+    min-width: 150px;
 }
