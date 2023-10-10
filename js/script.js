@@ -1,8 +1,7 @@
 //adaptive
-
+var gap='60';
 var arr = new Map([
-    ['cards', 'card'],
-    ['clients__container', 'clients__img']
+    ['cards', 'card']
   ]);
 
   function showMessage() {
@@ -16,7 +15,7 @@ setTimeout(() => {
     
 if (item.length==3){
     var ww=0;
-    console.log(item.length);
+
     var children = items[i].childNodes;
     for (var ii = 0; ii < children.length; ++ii) {
         ww=ww+parseInt(getComputedStyle(children[ii]).width);
@@ -28,6 +27,7 @@ if (item.length==3){
     for(var ii=0; ii<items.length; ii++){
         items[ii].style.display= 'grid';
     items[ii].style.gridTemplateColumns = "1fr 1fr 1fr";
+
     }}}
     else{
     for(var ii=0; ii<items.length; ii++){
@@ -40,32 +40,40 @@ if (item.length==3){
 if (item.length==4){
     var ww=0;
     var children = items[i].childNodes;
+    
     for (var ii = 0; ii < children.length; ++ii) {
         ww=ww+parseInt(getComputedStyle(children[ii].firstChild).width);
-        
       }
-    
-    if (items[i].clientHeight>= item[0].clientHeight*2){
-    if (parseInt(getComputedStyle(items[i]).width)< ww+parseInt(getComputedStyle(items[i]).gap)*3){
-      console.log(items.length);
+      ww=ww+gap*3;
+    //
+console.log(items[i].clientHeight>= item[0].clientHeight*2);
+    //if (parseInt(getComputedStyle(items[i]).width)< ww){
+      if (items[i].clientHeight>= item[0].clientHeight*2){
+        
     for(var ii=0; ii<items.length; ii++){
-    items[ii].style.display= 'grid';
-    items[ii].style.gridTemplateColumns = "1fr 1fr";
-    }}
-    else{
-    for(var ii=0; ii<items[i].length; ii++){
-    items[ii].style.display= 'flex';
-}}}}
+      console.log('1');
+    items[i].style.display= "grid";
+    items[i].style.gridTemplateColumns = "1fr 1fr";
+    }//}
+  }
+    if (parseInt(getComputedStyle(items[i]).width)>= ww){
+      items[0].style.display= 'nowrap';
+    for(var ii=0; ii<items.length; ii++){
+      
+      items[ii].style.display= 'flex';
+      items[ii].style.gridTemplateColumns = "repeat(4,1fr)";
+      
+}}}
 }
 }, 100);
 }
 );
   }
 window.onresize = function( event ) {
-    showMessage();
+    //showMessage();
 };
 document.addEventListener("DOMContentLoaded", () => {
-    showMessage()
+    //showMessage()
   });
 
 //popup
@@ -73,4 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //burger
 
 //scroll
+
+
+// Scroll
 
