@@ -69,15 +69,15 @@ console.log(items[i].clientHeight>= item[0].clientHeight*2);
 }
 );
   }
-window.onresize = function( event ) {
+//window.onresize = function( event ) {
     //showMessage();
-};
+//};
 document.addEventListener("DOMContentLoaded", () => {
-    
+    let timerDuration = 20;
   });
 
 //popup
-let timerDuration = 3;
+
 const items = document.getElementsByClassName('popup__container');
 // Функция для обновления таймера
 var modal = document.getElementById("popup__container");
