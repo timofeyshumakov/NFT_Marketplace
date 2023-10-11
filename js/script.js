@@ -73,15 +73,45 @@ window.onresize = function( event ) {
     //showMessage();
 };
 document.addEventListener("DOMContentLoaded", () => {
-    //showMessage()
+    
   });
 
 //popup
+let timerDuration = 3;
+const items = document.getElementsByClassName('popup__container');
+// Функция для обновления таймера
+var modal = document.getElementById("popup__container");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+
+function updateTimer() {
+  
+  if (timerDuration <= 0) {
+    clearInterval(timerInterval); // Остановить таймер
+    document.getElementById("popup__container").style.display= 'flex';
+  } else {
+    timerDuration--;
+  }
+}
+   // Получить ссылки на элементы модального окна
+
+   // При клике на кнопку отобразить модальное окно
+
+   // При клике на крестик скрыть модальное окно
+
+   // При клике вне модального окна скрыть его
+   window.onclick = function(event) {
+     if (event.target != document.getElementById("popup__container")) {
+      document.getElementById("popup__container").style.display = "none";
+     }
+   }
+// Запустить таймер каждую секунду
+const timerInterval = setInterval(updateTimer, 1000);
 
 //burger
 
 //scroll
 
 
-// Scroll
+
 
