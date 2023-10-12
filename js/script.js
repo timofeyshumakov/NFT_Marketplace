@@ -1,4 +1,6 @@
 //adaptive
+var i=0;
+var ii=0;
 var gap='60';
 var arr = new Map([
     ['cards', 'card']
@@ -10,27 +12,27 @@ const items = document.getElementsByClassName(adaptiveBlock);
 
 setTimeout(() => {
 
-    for(var i=0; i<items.length; i++) {
+    for( i=0; i<items.length; i++) {
     const item = items[i].getElementsByClassName(adaptiveElement);
     
 if (item.length==3){
     var ww=0;
 
     var children = items[i].childNodes;
-    for (var ii = 0; ii < children.length; ++ii) {
+    for ( ii = 0; ii < children.length; ++ii) {
         ww=ww+parseInt(getComputedStyle(children[ii]).width);
         
       }
       
     if (items[i].clientHeight >= item[0].clientHeight*3){
     if (window.screen.width > ww+parseInt(getComputedStyle(items[i]).gap)*2){
-    for(var ii=0; ii<items.length; ii++){
+    for( ii=0; ii<items.length; ii++){
         items[ii].style.display= 'grid';
     items[ii].style.gridTemplateColumns = "1fr 1fr 1fr";
 
     }}}
     else{
-    for(var ii=0; ii<items.length; ii++){
+    for( ii=0; ii<items.length; ii++){
         items[ii].style.display= 'grid';
         items[ii].style.gridTemplateColumns = "1fr";
     //alert(item[i].clientHeight)
@@ -72,26 +74,63 @@ console.log(items[i].clientHeight>= item[0].clientHeight*2);
 //window.onresize = function( event ) {
     //showMessage();
 //};
+let timerDuration = 0;
 document.addEventListener("DOMContentLoaded", () => {
-    let timerDuration = 20;
+  
+  popup();
   });
+//timer
+
+
 
 //popup
-
+function popup() {
+  timerPopupDuration = 20;
+  timerDuration= 11904;
+  timerRestart= timerDuration;
+  var popupActivate=1;
 const items = document.getElementsByClassName('popup__container');
 // Функция для обновления таймера
 var modal = document.getElementById("popup__container");
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 
-function updateTimer() {
-  
+ function updateTimer() {
   if (timerDuration <= 0) {
-    clearInterval(timerInterval); // Остановить таймер
-    document.getElementById("popup__container").style.display= 'flex';
+    timerDuration= timerRestart;
   } else {
-    timerDuration--;
+  timerDuration--;
+  hours= Math.floor(timerDuration/3600);
+  minutes= Math.floor(timerDuration/ 60) - hours*60;
+  seconds= timerDuration-minutes*60 - hours*3600;
+  if (hours < 10){
+    hours= '0' + hours;
   }
+  if (minutes < 10){
+    minutes= '0' + minutes;
+  }
+  if (seconds < 10){
+    seconds= '0' + seconds;
+  }
+  timers= document.getElementsByClassName('timer');
+
+  for(var i=0; i< timers.length; i++){
+    timers[i].innerText=hours + ':' + minutes + ':' + seconds;
+    
+  }
+  
+  }
+
+
+  if (timerPopupDuration <= 0 && popupActivate >= 1) {
+    //clearInterval(timerPopupInterval); // Остановить таймер
+    document.getElementById("popup__container").style.display= 'flex';
+    popupActivate--;
+  } else {
+    timerPopupDuration--;
+  }
+ }
+ const timerInterval = setInterval(updateTimer, 1000);
 }
    // Получить ссылки на элементы модального окна
 
@@ -106,7 +145,8 @@ function updateTimer() {
      }
    }
 // Запустить таймер каждую секунду
-const timerInterval = setInterval(updateTimer, 1000);
+
+
 
 //burger
 

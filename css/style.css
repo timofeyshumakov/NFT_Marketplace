@@ -25,6 +25,30 @@
     max-width: 100%;
 }
 
+.header__button {
+    background: rgba(233, 215, 167, 0.1);
+    color: #FFCE4E;
+    font: 600 18px Work Sans, sans-serif;
+}
+
+.title-highlight {
+    color: #FFCE4E;
+}
+
+.main-block__info {
+    max-width: 710px;
+    width: 50%;
+}
+
+.main-block__block-title {
+    font: 700 clamp(4rem, 5.3125vw, 5.3125rem) Work Sans, sans-serif;
+    line-height: 153%;
+}
+
+.header__button button {
+    padding: 1.25rem 1.875rem;
+}
+
 @media screen and (min-width: 767px) {
     .clients__container {
         -ms-flex-wrap: nowrap;
@@ -83,6 +107,26 @@
     }
 }
 
+.live-auctions__card-img {
+    position: relative;
+}
+
+.live-auctions__card-timer {
+    position: absolute;
+    bottom: 0;
+}
+
+.header__menu {
+    gap: 10vw;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.active {
+    color: #FFCE4E;
+}
+
 .top-creators__creators {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -96,13 +140,18 @@
 }
 
 .how-it-works__block {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    display: grid;
 }
 
-.how-it-works__illustration-arrow {
-    -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
+.how-it-works__illustration-images {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: -20px;
 }
 
 .clients__container {
@@ -182,17 +231,17 @@ img {
     background: #302034;
 }
 
+header a {
+    color: #F5FBF2;
+    font: 500 18px Work Sans, sans-serif;
+    letter-spacing: 0.36px;
+}
+
 .cards {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     gap: 30px;
-}
-
-.menu__link {
-    font-size: 14px;
-    line-height: 130%;
-    color: #A48EA9;
 }
 
 .autorization__login-text {
@@ -234,7 +283,7 @@ body {
     color: #FFFFFF;
 }
 
-.bg_button {
+.bg-button {
     background-color: #FFCE4E;
     color: #000000;
     font-family: Work Sans;
@@ -243,11 +292,27 @@ body {
     line-height: 115%;
 }
 
-.view_button {
+.header__logo {
+    width: clam(3rem, 4.125vw, 4.125rem);
+}
+
+.view-button {
     background-color: rgba(28, 28, 28, 0);
-    color: #F5FBF2;
+    color: #96839B;
     font: 500 30px Work Sans;
     line-height: 115%;
+    padding: 24px 65px;
+}
+
+.main-block__button {
+    font: 600 28px Work Sans, sans-serif;
+    width: 14.375rem;
+    padding: 24px 0;
+}
+
+.main-block__button:nth-child(2) {
+    background-color: rgba(233, 215, 167, 0.1);
+    color: #F5FBF2;
 }
 
 .button {
@@ -261,7 +326,6 @@ body {
     -ms-flex-pack: center;
     justify-content: center;
     border-radius: 0;
-    padding: 30px 65px;
     border: 1px solid #FFCE4E;
 }
 
@@ -361,7 +425,7 @@ h2 {
     font-size: 64px;
     font-weight: 700;
     line-height: 200%;
-    color: #F5FBF2;
+    color: #96839B;
 }
 
 .top-creators__row {
@@ -386,7 +450,6 @@ h2 {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    padding: 0 clamp(3.75rem, 6.25vw, 6.25rem) 0 0;
 }
 
 .header {
@@ -394,11 +457,11 @@ h2 {
 }
 
 .main-block {
-    padding: clamp(3.125rem, 8.75vw, 8.75rem) 0;
+    padding: clamp(3.125rem, 7.5vw, 7.5rem) 0;
 }
 
 .clients {
-    padding: clamp(5rem, 6.25vw, 6.25rem) 0;
+    padding: clamp(5rem, 6.25vw, 6.25rem) 0 0;
 }
 
 .live-auctions {
@@ -417,7 +480,7 @@ h2 {
     padding: clamp(3.125rem, 6.25vw, 6.25rem) 0 clamp(3.125rem, 5vw, 5rem) 0;
 }
 
-.explore-by-categories {
+.explore {
     padding: 5rem 0;
 }
 
@@ -496,7 +559,7 @@ h2 {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    gap: 5vw;
+    gap: 4vw;
 }
 
 .subscribe {
@@ -550,7 +613,7 @@ h2 {
     cursor: pointer;
 }
 
-.subscribe_block {
+.subscribe-block {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -571,5 +634,5 @@ input {
     border: 1px solid #E7B226;
     padding: clamp(1.25rem, 1.875vw, 1.875rem) clamp(1.875rem, 3.125vw, 3.125rem);
     font: 400 24px Work Sans, sans-serif;
-    color: #F5FBF2;
+    color: #96839B;
 }
