@@ -21,6 +21,47 @@
     flex-wrap: nowrap;
 }
 
+.top-creators__creator-name {
+    font: 600 32px Work Sans, sans-serif;
+    line-height: 110%;
+    letter-spacing: 1.6px;
+}
+
+.top-creators__creator-price {
+    color: #BDAAC1;
+    font: 500 24px Work Sans;
+    line-height: 150%;
+}
+
+.top-creators__creator-items-txt {
+    font: 600 24px Work Sans;
+    color: #908294;
+    line-height: 150%;
+}
+
+.top-creators__creator-items-value {
+    color: #F5FBF2;
+    font-family: Oxanium;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: 1.6px;
+}
+
+.explain__illustration-txt {
+    color: #FFCE4E;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.explore__card-bid-value {
+    color: #F5FBF2;
+    font-family: Oxanium;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 178%;
+}
+
 .main-img__img img {
     max-width: 100%;
 }
@@ -213,17 +254,6 @@
     padding-bottom: 100px;
     background: -webkit-gradient(linear, left top, left bottom, to(rgba(79, 70, 78, 0.4509803922))) right/43% no-repeat;
     background: linear-gradient(rgba(79, 70, 78, 0.4509803922) 100%) right/43% no-repeat;
-}
-
-.main-card__header {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    position: absolute;
-    width: 100%;
 }
 
 .live-auctions__card-img {
@@ -697,6 +727,131 @@ h2 {
     color: #F5FBF2;
 }
 
+.live-auctions__title-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+}
+
+.main-card__header {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.main-card__header-container {
+    padding: 1.25rem 2.5rem;
+    opacity: 0.95;
+    background: linear-gradient(93deg, rgba(255, 137, 61, 0.09) -52.37%, rgba(250, 250, 250, 0.9) 137.41%);
+    -webkit-box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.12);
+    -webkit-backdrop-filter: blur(22.5px);
+    backdrop-filter: blur(22.5px);
+    margin: 1.5625vw 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    position: absolute;
+    width: 90%;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+}
+
+.main-card__text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.main-card__title {
+    color: #E4DEE7;
+    font-family: Oxanium, cursive;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 122%;
+    letter-spacing: 1.44px;
+}
+
+.main-card__sub-title {
+    color: #FFF;
+    font-family: Oxanium;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 125%;
+}
+
+.title-container {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative;
+}
+
+.title-circle {
+    width: clamp(5.25rem, 6.875vw, 6.875rem);
+    height: clamp(5.25rem, 6.875vw, 6.875rem);
+    -webkit-clip-path: circle(50%);
+    clip-path: circle(50%);
+    -webkit-transform: translate(65%, 15%);
+    -ms-transform: translate(65%, 15%);
+    transform: translate(65%, 15%);
+    position: relative;
+    z-index: -1;
+}
+
+.live-auctions__title-circle {
+    background: #8613A5;
+}
+
+.explore__title-circle {
+    background: #8613A5;
+}
+
+.popular-collections__title-circle {
+    background: #E03054;
+}
+
+.top-creators__title-circle {
+    background: #E03054;
+}
+
+.live-auctions__arrows {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 30px;
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+}
+
+.live-auctions__title {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative;
+}
+
 .main-block__stats {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -783,8 +938,13 @@ h2 {
 
 .main-block__scroll-button {
     position: absolute;
-    bottom: -90px;
-    left: -50px;
+    bottom: -30%;
+    left: -20%;
+}
+
+.explain__title-circle {
+    width: 0;
+    height: 0;
 }
 
 .header {

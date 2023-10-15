@@ -88,7 +88,7 @@ function popup() {
   timerPopupDuration = 20;
   timerDuration= 11904;
   timerRestart= timerDuration;
-  var popupActivate=1;
+  var popupActivate=0;
 const items = document.getElementsByClassName('popup__container');
 // Функция для обновления таймера
 var modal = document.getElementById("popup__container");
