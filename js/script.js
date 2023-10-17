@@ -1,82 +1,68 @@
 //adaptive
+var title = document.getElementsByClassName('live-auctions__title');
+var arrows = document.getElementsByClassName('live-auctions__arrows');
+var cw = 0;
+var burgerClick = 0;
+var item = '';
 var i=0;
 var ii=0;
-var gap='60';
-var arr = new Map([
-    ['cards', 'card']
-  ]);
+var ww=[];
 
-  function showMessage() {
-  arr.forEach(function(adaptiveElement,adaptiveBlock) {
-const items = document.getElementsByClassName(adaptiveBlock);
-
-setTimeout(() => {
-
-    for( i=0; i<items.length; i++) {
-    const item = items[i].getElementsByClassName(adaptiveElement);
-    
-if (item.length==3){
-    var ww=0;
-
-    var children = items[i].childNodes;
-    for ( ii = 0; ii < children.length; ++ii) {
-        ww=ww+parseInt(getComputedStyle(children[ii]).width);
-        
-      }
-      
-    if (items[i].clientHeight >= item[0].clientHeight*3){
-    if (window.screen.width > ww+parseInt(getComputedStyle(items[i]).gap)*2){
-    for( ii=0; ii<items.length; ii++){
-        items[ii].style.display= 'grid';
-    items[ii].style.gridTemplateColumns = "1fr 1fr 1fr";
-
-    }}}
-    else{
-    for( ii=0; ii<items.length; ii++){
-        items[ii].style.display= 'grid';
-        items[ii].style.gridTemplateColumns = "1fr";
-    //alert(item[i].clientHeight)
-}}
-    }
-    
-if (item.length==4){
-    var ww=0;
-    var children = items[i].childNodes;
-    
-    for (var ii = 0; ii < children.length; ++ii) {
-        ww=ww+parseInt(getComputedStyle(children[ii].firstChild).width);
-      }
-      ww=ww+gap*3;
-    //
-console.log(items[i].clientHeight>= item[0].clientHeight*2);
-    //if (parseInt(getComputedStyle(items[i]).width)< ww){
-      if (items[i].clientHeight>= item[0].clientHeight*2){
-        
-    for(var ii=0; ii<items.length; ii++){
-      console.log('1');
-    items[i].style.display= "grid";
-    items[i].style.gridTemplateColumns = "1fr 1fr";
-    }//}
-  }
-    if (parseInt(getComputedStyle(items[i]).width)>= ww){
-      items[0].style.display= 'nowrap';
-    for(var ii=0; ii<items.length; ii++){
-      
-      items[ii].style.display= 'flex';
-      items[ii].style.gridTemplateColumns = "repeat(4,1fr)";
-      
-}}}
+function adaptive() {
+const items = document.getElementsByClassName('cards');
+for( i=0; i<items.length; i++) {
+  item = items[i].childNodes;
+  ww[i]=0;
+  ww[i] = parseInt(getComputedStyle(item[i]).minWidth) + parseInt(getComputedStyle(item[i]).gap) * (items.length+1);
+if(Math.floor(window.screen.width/ ww[i]) < 3){
+  arrows[0].style.justifyContent = 'center';
+  arrows[0].style.position = 'relative';
+  title[0].style.flexDirection = 'column';
 }
-}, 100);
+else{
+  title[0].style.flexDirection = 'row';
+  arrows[0].style.justifyContent = 'center';
+  arrows[0].style.position = 'absolute';
 }
-);
-  }
-//window.onresize = function( event ) {
-    //showMessage();
-//};
+if(Math.floor(window.screen.width/ ww[i]) === 2){
+  item[item.length-1].style.display='none';
+  item[item.length-2].style.display='flex';
+}
+else if(Math.floor(window.screen.width/ ww[i]) === 1){
+  item[item.length-1].style.display='none';
+  item[item.length-2].style.display='none';
+}
+else if(Math.floor(window.screen.width/ ww[i]) > 2){
+  item[item.length-1].style.display='flex';
+  item[item.length-2].style.display='flex';
+}
+}
+var hidenArrow = document.getElementsByClassName('hiden-arrow');
+if(window.screen.width < 1024 && window.screen.width > 768){
+  
+  hidenArrow[0].style.display = 'none';
+}
+else{
+  hidenArrow[0].style.display = 'flex';
+}
+}
+
+
+
+window.onresize = function( event ) {
+  burger(cw);
+  adaptive();
+};
 let timerDuration = 0;
 document.addEventListener("DOMContentLoaded", () => {
-  
+
+  var items = document.getElementById('header__container').childNodes;
+
+for( i=0; i<items.length; i++) {
+cw = cw + parseInt(getComputedStyle(items[i]).width);
+}
+  burger(cw);
+  adaptive();
   popup();
   });
 //timer
@@ -90,7 +76,7 @@ function popup() {
   timerRestart= timerDuration;
   var popupActivate=0;
 const items = document.getElementsByClassName('popup__container');
-// Функция для обновления таймера
+
 var modal = document.getElementById("popup__container");
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
@@ -132,26 +118,49 @@ var span = document.getElementsByClassName("close")[0];
  }
  const timerInterval = setInterval(updateTimer, 1000);
 }
-   // Получить ссылки на элементы модального окна
 
-   // При клике на кнопку отобразить модальное окно
-
-   // При клике на крестик скрыть модальное окно
-
-   // При клике вне модального окна скрыть его
    window.onclick = function(event) {
      if (event.target != document.getElementById("popup__container")) {
       document.getElementById("popup__container").style.display = "none";
      }
    }
-// Запустить таймер каждую секунду
 
+function burger(cw) {
 
+if(window.screen.width <= cw + 50){
+  document.getElementById('menu-burger').style.display= 'flex';
+  document.getElementById('menu-burger-content').style.display= 'none';
+  document.getElementById('menu-burger-container').style.position= 'relative';
+}
+else{
+  document.getElementById('menu-burger').style.display= 'none';
+  document.getElementById('menu-burger-container').style.position= 'absolute';
+  document.getElementById('menu-burger-content').style.display= 'flex';
+  document.getElementById('header__container').style.flexDirection = 'row';
+}
 
-//burger
-
+window.onclick = function(event) {
+var menuBurgerContent = document.getElementById('menu-burger-content');
+var menuList = document.getElementById('menu__list');
+var headerButton = document.getElementById('header__button');
+  if (event.target.id == 'menu-burger') {
+    if (burgerClick == 0) {
+      menuBurgerContent.style.display = "flex";
+      menuBurgerContent.style.flexDirection = 'column';
+      menuList.style.flexDirection = 'column';
+      menuList.style.alignItems = 'center';
+      headerButton.style.display = "flex";
+      document.getElementById('header__container').style.flexDirection = 'column';
+      burgerClick = 1;
+}
+else{
+  menuBurgerContent.style.display = "none";
+  document.getElementById('header__container').style.flexDirection = 'row';
+  burgerClick = 0;
+}
+}
+}
+}
 //scroll
-
-
 
 
