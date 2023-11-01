@@ -6,7 +6,7 @@ function strategy_assets() {
     wp_enqueue_style( 'font-Oxanium', 'https://fonts.googleapis.com/css?family=Oxanium:wght@400;500;600&amp;display=swap' );
     wp_enqueue_style( 'reset', get_template_directory_uri() . '/assets/css/reset.css' );
 	wp_enqueue_style( 'maincss', get_template_directory_uri() . '/assets/css/style.css' );
-    wp_enqueue_script( 'script', get_template_directory_uri() . '/assets/js/script.js',array(),'1.0.0',true);
+    wp_enqueue_script( 'script', get_template_directory_uri() . '/assets/js/script.js',array(),true);
 }
 
 add_action( 'wp_enqueue_scripts', 'strategy_assets' );

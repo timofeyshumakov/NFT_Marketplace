@@ -3,7 +3,7 @@ var title = document.getElementsByClassName('live-auctions__title');
 var arrows = document.getElementsByClassName('live-auctions__arrows');
 var cw = 0;
 var burgerClick = 0;
-var item = '';
+var item = [];
 var i=0;
 var ii=0;
 var ww=[];
@@ -11,7 +11,7 @@ var ww=[];
 function adaptive() {
 const items = document.getElementsByClassName('cards');
 for( i=0; i<items.length; i++) {
-  item = items[i].childNodes;
+  item = items[i].getElementsByClassName('card');
   ww[i]=0;
   ww[i] = parseInt(getComputedStyle(item[i]).minWidth) + parseInt(getComputedStyle(item[i]).gap) * (items.length+1);
 if(Math.floor(window.screen.width/ ww[i]) < 3){
@@ -25,16 +25,16 @@ else{
   arrows[0].style.position = 'absolute';
 }
 if(Math.floor(window.screen.width/ ww[i]) === 2){
-  item[item.length-1].style.display='none';
-  item[item.length-2].style.display='flex';
+  item[2].style.display='none';
+  item[1].style.display='flex';
 }
 else if(Math.floor(window.screen.width/ ww[i]) === 1){
-  item[item.length-1].style.display='none';
-  item[item.length-2].style.display='none';
+  item[2].style.display='none';
+  item[1].style.display='none';
 }
 else if(Math.floor(window.screen.width/ ww[i]) > 2){
-  item[item.length-1].style.display='flex';
-  item[item.length-2].style.display='flex';
+  item[2].style.display='flex';
+  item[1].style.display='flex';
 }
 }
 var hidenArrow = document.getElementsByClassName('hiden-arrow');
@@ -55,12 +55,16 @@ window.onresize = function( event ) {
 };
 let timerDuration = 0;
 document.addEventListener("DOMContentLoaded", () => {
-
+  
   var items = document.getElementById('header__container').childNodes;
 
 for( i=0; i<items.length; i++) {
-cw = cw + parseInt(getComputedStyle(items[i]).width);
+  if(items[i].id != undefined){
+    cw = cw + parseInt(getComputedStyle(items[i]).width);
+  }
 }
+
+cw=cw+20;
   burger(cw);
   adaptive();
   popup();
@@ -155,6 +159,7 @@ var headerButton = document.getElementById('header__button');
 else{
   menuBurgerContent.style.display = "none";
   document.getElementById('header__container').style.flexDirection = 'row';
+  document.getElementById('menu-burger-content').style.flexDirection = 'row';
   burgerClick = 0;
 }
 }
