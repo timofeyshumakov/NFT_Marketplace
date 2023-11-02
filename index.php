@@ -73,19 +73,37 @@ get_header();
             </div>
           </div>
           <div class="live-auctions__cards cards">
-            <div class="live-auctions__card card">
+
+<?php
+global $post;
+$myposts = get_posts([ 
+	'numberposts' => -1,
+	'category'    => 3,
+	'orderby'     => 'date',
+	'order'       => 'DESC',
+]);
+
+if( $myposts ){
+	foreach( $myposts as $post ){
+		setup_postdata( $post );
+		?>
+		        <div class="live-auctions__card card">
               <div class="live-auctions__card-img-wrapper">
-                <div class="live-auctions__card-img"><img src="<?php echo get_template_directory_uri() ?>/assets/img/nft/nft_image1.webp" alt="some photo">
+                <?php the_post_thumbnail(
+                  array(
+                    'class' => 'live-auctions__card-img',
+                    'alt' => 'some-text'
+                  ));?>
                   <div class="live-auctions__timer timer" id="timer">03:18:24</div>
                 </div>
-              </div>
+
               <div class="live-auctions__card-info card-info">
                 <div class="live-auctions__card-autor card-autor">
                   <div class="live-auctions__card-img-data img-data">
                     <div class="live-auctions__card-autor-icon card-autor-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image1.webp" alt="some photo"></div>
                     <div class="live-auctions__card-img-info card-img-info">
-                      <div class="live-auctions__card-img-name card-img-name">Virtual Art</div>
-                      <div class="live-auctions__card-autor-name card-autor-name">by @wzard</div>
+                      <div class="live-auctions__card-img-name card-img-name"><?php the_title();?></div>
+                      <div class="live-auctions__card-autor-name card-autor-name"><?php the_content();?></div>
                     </div>
                   </div>
                   <div class="live-auctions__card-likes card-likes">
@@ -100,63 +118,10 @@ get_header();
                 <div class="live-auctions__card-button button">Place a bid</div>
               </div>
             </div>
-            <div class="live-auctions__card card">
-              <div class="live-auctions__card-img-wrapper">
-                <div class="live-auctions__card-img"><img src="<?php echo get_template_directory_uri() ?>/assets/img/nft/nft_image2.webp" alt="some photo">
-                  <div class="live-auctions__timer timer" id="timer">03:18:24</div>
-                </div>
-              </div>
-              <div class="live-auctions__card-info card-info">
-                <div class="live-auctions__card-autor card-autor">
-                  <div class="live-auctions__card-img-data img-data">
-                    <div class="live-auctions__card-autor-icon card-autor-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image1.webp" alt="some photo"></div>
-                    <div class="live-auctions__card-img-info card-img-info">
-                      <div class="live-auctions__card-img-name card-img-name">Virtual Art</div>
-                      <div class="live-auctions__card-autor-name card-autor-name">by @wzard</div>
-                    </div>
-                  </div>
-                  <div class="live-auctions__card-likes card-likes">
-                    <div class="live-auctions__card-likes-icon card-likes-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/likes_icon.svg" alt="some photo"></div>
-                    <div class="live-auctions__card-likes-value">92</div>
-                  </div>
-                </div>
-                <div class="live-auctions__card-bid card-bid">
-                  <div class="live-auctions__card-bid-txt bid-txt">Current Bid</div>
-                  <div class="live-auctions__card-bid-value">4.89 ETH</div>
-                </div>
-                <div class="live-auctions__card-button button">Place a bid</div>
-              </div>
-            </div>
-            <div class="live-auctions__card card">
-              <div class="live-auctions__card-img-wrapper">
-                <div class="live-auctions__card-img"><img src="<?php echo get_template_directory_uri() ?>/assets/img/nft/nft_image3.webp" alt="some photo">
-                  <div class="live-auctions__timer timer" id="timer">03:18:24</div>
-                </div>
-              </div>
-              <div class="live-auctions__card-info card-info">
-                <div class="live-auctions__card-autor card-autor">
-                  <div class="live-auctions__card-img-data img-data">
-                    <div class="live-auctions__card-autor-icon card-autor-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image1.webp" alt="some photo"></div>
-                    <div class="live-auctions__card-img-info card-img-info">
-                      <div class="live-auctions__card-img-name card-img-name">Virtual Art</div>
-                      <div class="live-auctions__card-autor-name card-autor-name">by @wzard</div>
-                    </div>
-                  </div>
-                  <div class="live-auctions__card-likes card-likes">
-                    <div class="live-auctions__card-likes-icon card-likes-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/likes_icon.svg" alt="some photo"></div>
-                    <div class="live-auctions__card-likes-value">92</div>
-                  </div>
-                </div>
-                <div class="live-auctions__card-bid card-bid">
-                  <div class="live-auctions__card-bid-txt bid-txt">Current Bid</div>
-                  <div class="live-auctions__card-bid-value">4.89 ETH</div>
-                </div>
-                <div class="live-auctions__card-button button">Place a bid</div>
-              </div>
-            </div>
-          </div><button class="live-auctions__button button view-button">View All</button>
+		<?php } } wp_reset_postdata(); ?>
         </div>
       </section>
+
       <section class="page__explain explain">
         <div class="explain__container container cgap">
           <div class="explain__title-container title-container">
