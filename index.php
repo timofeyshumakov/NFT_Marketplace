@@ -76,13 +76,13 @@ get_header();
 
 <?php
 global $post;
-$myposts = get_posts([ 
-	'numberposts' => -1,
-	'category'    => 3,
+$myposts = get_posts([
+  'numberposts' => -1,
 	'orderby'     => 'date',
 	'order'       => 'DESC',
+  'category'    => 3,
 ]);
-
+$id = $post->ID;
 if( $myposts ){
 	foreach( $myposts as $post ){
 		setup_postdata( $post );
@@ -94,7 +94,7 @@ if( $myposts ){
                     'class' => 'live-auctions__card-img',
                     'alt' => 'some-text'
                   ));?>
-                  <div class="live-auctions__timer timer" id="timer">03:18:24</div>
+                  <div class="live-auctions__timer timer" id="timer"><?php echo get_post_meta( $id, 'timer', true ); ?></div>
                 </div>
 
               <div class="live-auctions__card-info card-info">
@@ -108,12 +108,12 @@ if( $myposts ){
                   </div>
                   <div class="live-auctions__card-likes card-likes">
                     <div class="live-auctions__card-likes-icon card-likes-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/likes_icon.svg" alt="some photo"></div>
-                    <div class="live-auctions__card-likes-value">92</div>
+                    <div class="live-auctions__card-likes-value"><?php echo get_post_meta( $id, 'likes', true ); ?></div>
                   </div>
                 </div>
                 <div class="live-auctions__card-bid card-bid">
                   <div class="live-auctions__card-bid-txt bid-txt">Current Bid</div>
-                  <div class="live-auctions__card-bid-value">4.89 ETH</div>
+                  <div class="live-auctions__card-bid-value"><?php echo get_post_meta( $id, 'bid', true ); ?></div>
                 </div>
                 <div class="live-auctions__card-button button">Place a bid</div>
               </div>
@@ -158,37 +158,36 @@ if( $myposts ){
             <h2 class="popular-collections__block-title-text">Popular Collections</h2>
           </div>
           <div class="popular-collections__cards cards">
-            <div class="popular-collections__card card">
-              <div class="popular-collections__card-img"><img src="<?php echo get_template_directory_uri() ?>/assets/img/nft/nft_image2.webp" alt="some photo"></div>
+          <?php
+global $post;
+$myposts = get_posts([
+  'numberposts' => -1,
+	'orderby'     => 'date',
+	'order'       => 'DESC',
+  'category'    => 4,
+]);
+$id = $post->ID;
+if( $myposts ){
+	foreach( $myposts as $post ){
+		setup_postdata( $post );
+		?>
+<div class="popular-collections__card card">
+              <div class="popular-collections__card-img">
+                                <?php the_post_thumbnail(
+                  array(
+                    'class' => 'live-auctions__card-img',
+                    'alt' => 'some-text'
+                  ));?>
+              </div>
               <div class="popular-collections__card-info">
                 <div class="popular-collections__card-img-data img-data">
                   <div class="popular-collections__card-autor-icon card-autor-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image2.webp" alt="some photo"></div>
-                  <div class="popular-collections__card-info-name">@wzard</div>
+                  <div class="popular-collections__card-info-name"><?php the_title();?></div></div>
                 </div>
-                <div class="popular-collections__card-info-txt">ERC-721</div>
+                <div class="popular-collections__card-info-txt"><?php the_content();?></div></div>
               </div>
-            </div>
-            <div class="popular-collections__card card">
-              <div class="popular-collections__card-img"><img src="<?php echo get_template_directory_uri() ?>/assets/img/nft/nft_image4.webp" alt="some photo"></div>
-              <div class="popular-collections__card-info">
-                <div class="popular-collections__card-img-data img-data">
-                  <div class="popular-collections__card-autor-icon card-autor-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image2.webp" alt="some photo"></div>
-                  <div class="popular-collections__card-info-name">@wzard</div>
-                </div>
-                <div class="popular-collections__card-info-txt">ERC-721</div>
-              </div>
-            </div>
-            <div class="popular-collections__card card">
-              <div class="popular-collections__card-img"><img src="<?php echo get_template_directory_uri() ?>/assets/img/nft/nft_image2.webp" alt="some photo"></div>
-              <div class="popular-collections__card-info">
-                <div class="popular-collections__card-img-data img-data">
-                  <div class="popular-collections__card-autor-icon card-autor-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image2.webp" alt="some photo"></div>
-                  <div class="popular-collections__card-info-name">@wzard</div>
-                </div>
-                <div class="popular-collections__card-info-txt">3ERC-721</div>
-              </div>
-            </div>
-          </div>
+		<?php } } wp_reset_postdata(); ?>
+
           <div class="popular-collections__arrow"></div>
           <div class="popular-collections__button button view-button">View All</div>
         </div>
@@ -225,56 +224,7 @@ if( $myposts ){
                 </div>
               </div>
             </div>
-            <div class="explore__card card">
-              <div class="explore__card-img-wrapper">
-                <div class="explore__card-img"><img src="<?php echo get_template_directory_uri() ?>/assets/img/nft/nft_image6.webp" alt="some photo"></div>
-                <div class="explore__card-button">Place a bid</div>
-              </div>
-              <div class="explore__card-info card-info">
-                <div class="explore__card-autor card-autor">
-                  <div class="explore__card-img-data img-data">
-                    <div class="explore__card-autor-icon card-autor-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image3.webp" alt="some photo"></div>
-                    <div class="explore__card-img-info card-img-info">
-                      <div class="explore__card-img-name card-img-name">Virtual Art</div>
-                      <div class="explore__card-autor-name card-autor-name">by @wzard</div>
-                    </div>
-                  </div>
-                  <div class="explore__card-likes card-likes">
-                    <div class="explore__card-likes-icon card-likes-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/likes_icon.svg" alt="some photo"></div>
-                    <div class="explore__card-likes-value">92</div>
-                  </div>
-                </div>
-                <div class="explore__card-bid card-bid">
-                  <div class="explore__card-bid-txt bid-txt">Current Bid</div>
-                  <div class="explore__card-bid-value">4.89 ETH</div>
-                </div>
-              </div>
-            </div>
-            <div class="explore__card card">
-              <div class="explore__card-img-wrapper">
-                <div class="explore__card-img"><img src="<?php echo get_template_directory_uri() ?>/assets/img/nft/nft_image7.webp" alt="some photo"></div>
-                <div class="explore__card-button">Place a bid</div>
-              </div>
-              <div class="explore__card-info card-info">
-                <div class="explore__card-autor card-autor">
-                  <div class="explore__card-img-data img-data">
-                    <div class="explore__card-autor-icon card-autor-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image3.webp" alt="some photo"></div>
-                    <div class="explore__card-img-info card-img-info">
-                      <div class="explore__card-img-name card-img-name">Virtual Art</div>
-                      <div class="explore__card-autor-name card-autor-name">by @wzard</div>
-                    </div>
-                  </div>
-                  <div class="explore__card-likes card-likes">
-                    <div class="explore__card-likes-icon card-likes-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/likes_icon.svg" alt="some photo"></div>
-                    <div class="explore__card-likes-value">92</div>
-                  </div>
-                </div>
-                <div class="explore__card-bid card-bid">
-                  <div class="explore__card-bid-txt bid-txt">Current Bid</div>
-                  <div class="explore__card-bid-value">4.89 ETH</div>
-                </div>
-              </div>
-            </div>
+
           </div>
           <div class="explore__button button view-button">View All</div>
         </div>
