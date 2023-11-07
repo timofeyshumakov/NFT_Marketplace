@@ -1,4 +1,5 @@
 //adaptive
+
 var title = document.getElementsByClassName('live-auctions__title');
 var arrows = document.getElementsByClassName('live-auctions__arrows');
 var cw = 0;
@@ -9,12 +10,17 @@ var ii=0;
 var ww=[];
 
 function adaptive() {
+
 const items = document.getElementsByClassName('cards');
+
 for( i=0; i<items.length; i++) {
   item = items[i].getElementsByClassName('card');
+
   ww[i]=0;
   ww[i] = parseInt(getComputedStyle(item[i]).minWidth) + parseInt(getComputedStyle(item[i]).gap) * (items.length+1);
-if(Math.floor(window.screen.width/ ww[i]) < 3){
+var countCards = Math.floor(window.screen.width/ ww[i]);
+if(item.length === 3){
+if(countCards < 3){
   arrows[0].style.justifyContent = 'center';
   arrows[0].style.position = 'relative';
   title[0].style.flexDirection = 'column';
@@ -24,17 +30,31 @@ else{
   arrows[0].style.justifyContent = 'center';
   arrows[0].style.position = 'absolute';
 }
-if(Math.floor(window.screen.width/ ww[i]) === 2){
+if(countCards === 2){
   item[2].style.display='none';
   item[1].style.display='flex';
 }
-else if(Math.floor(window.screen.width/ ww[i]) === 1){
+else if(countCards === 1){
   item[2].style.display='none';
   item[1].style.display='none';
 }
-else if(Math.floor(window.screen.width/ ww[i]) > 2){
+else if(countCards > 2){
   item[2].style.display='flex';
   item[1].style.display='flex';
+  for( i=0; i<countCards; i++) {
+  item[i].style.width= '33%';
+  }
+}
+}
+if(item.length === 2){
+  for( i=0; i<countCards; i++) {
+    item[i].style.width= '50%';
+    }
+}
+if(item.length > 3){
+  for( i=3; i<item.length; i++) {
+    item[i].style.display='none';
+    }
 }
 }
 var hidenArrow = document.getElementsByClassName('hiden-arrow');
@@ -74,8 +94,10 @@ cw=cw+20;
 
 //popup
 function popup() {
+  var descript = document.getElementsByClassName('timer');
   timerPopupDuration = 20;
-  timerDuration= 11904;
+  timerDuration= (descript[0].innerHTML).split(":");
+  timerDuration= timerDuration[0]*3600+timerDuration[1]*60+timerDuration[2]*1;
   timerRestart= timerDuration;
   var popupActivate=0;
 const items = document.getElementsByClassName('popup__container');
