@@ -1,5 +1,9 @@
 <?php 
 get_header();
+//поле из acf
+$string='1,,2,,3';
+$separator=',,';
+$world=explode($separator, $string);
 ?>
     <main class="page">
       <section class="page__main-block main-block">
@@ -8,6 +12,12 @@ get_header();
             <h1 class="main-block__block-title">Explore, Buy and Sell the <span class='title-highlight'> Best NFTs!</span></h1>
             <div class="main-block__buttons buttons"><button class="main-block__button button bg-button">Explore</button><button class="main-block__button button">Create</button></div>
             <div class="main-block__stats">
+              <?php foreach ($world as $value) {
+                echo '<div class="main-block__stats-block">';
+                echo '<div class="main-block__stats-title">'.$value.'</div>';
+                echo '<div class="main-block__stats-txt">'.$value.'</div>';
+                echo '</div>';
+              }?>
               <div class="main-block__stats-block">
                 <div class="main-block__stats-title">32k+</div>
                 <div class="main-block__stats-txt">Artworks</div>
@@ -88,7 +98,7 @@ if( $myposts ){
 		setup_postdata( $post );
 		?>
 		        <div class="live-auctions__card card">
-              <div class="live-auctions__card-img-wrapper">
+              <div class="live-auctions__card-img-wrapper card-img">
                 <?php the_post_thumbnail(
                   array(
                     'class' => 'live-auctions__card-img',
@@ -129,25 +139,30 @@ if( $myposts ){
             <h2 class="explain__block-title-text">How it works</h2>
           </div>
           <div class="explain__block">
+<?php
+$myposts = get_posts([
+  'numberposts' => -1,
+	'orderby'     => 'date',
+	'order'       => 'DESC',
+  'category'    =>  4,
+]);
+$id = $post->ID;
+if( $myposts ){
+	foreach( $myposts as $post ){
+	setup_postdata( $post );
+?>
             <div class="explain__illustration-item">
-              <div class="explain__illustration-img"><img src="<?php echo get_template_directory_uri() ?>/assets/img/how_it_works/icon1.svg" alt="some photo"></div>
-              <h4 class="explain__illustration-txt">Set up your wallet</h4>
+              <div class="explain__illustration-img">
+              <?php the_post_thumbnail(
+                  array(
+                    'class' => '',
+                    'alt' => 'some-text'
+                  ));?>
+                  </div>
+              <h4 class="explain__illustration-txt"><?php the_title();?></h4>
               <div class="explain__illustration-arrow"><img src="<?php echo get_template_directory_uri() ?>/assets/img/how_it_works/Vector1.svg" alt="some photo"></div>
             </div>
-            <div class="explain__illustration-item">
-              <div class="explain__illustration-img"><img src="<?php echo get_template_directory_uri() ?>/assets/img/how_it_works/icon2.svg" alt="some photo"></div>
-              <h4 class="explain__illustration-txt">Create your collection</h4>
-              <div class="explain__illustration-arrow hiden-arrow"><img src="<?php echo get_template_directory_uri() ?>/assets/img/how_it_works/Vector1.svg" alt="some photo"></div>
-            </div>
-            <div class="explain__illustration-item">
-              <div class="explain__illustration-img"><img src="<?php echo get_template_directory_uri() ?>/assets/img/how_it_works/icon3.svg" alt="some photo"></div>
-              <h4 class="explain__illustration-txt">Add your NFTs</h4>
-              <div class="explain__illustration-arrow"><img src="<?php echo get_template_directory_uri() ?>/assets/img/how_it_works/Vector1.svg" alt="some photo"></div>
-            </div>
-            <div class="explain__illustration-item">
-              <div class="explain__illustration-img"><img src="<?php echo get_template_directory_uri() ?>/assets/img/how_it_works/icon4.svg" alt="some photo"></div>
-              <h4 class="explain__illustration-txt">List them for sale</h4>
-            </div>
+<?php } } wp_reset_postdata(); ?>
           </div>
         </div>
       </section>
@@ -164,7 +179,7 @@ $myposts = get_posts([
   'numberposts' => -1,
 	'orderby'     => 'date',
 	'order'       => 'DESC',
-  'category'    => 4,
+  'category'    => 5,
 ]);
 $id = $post->ID;
 if( $myposts ){
@@ -172,7 +187,7 @@ if( $myposts ){
 		setup_postdata( $post );
 		?>
 <div class="popular-collections__card card">
-              <div class="popular-collections__card-img">
+              <div class="popular-collections__card-img card-img">
                                 <?php the_post_thumbnail(
                   array(
                     'class' => 'live-auctions__card-img',
@@ -183,8 +198,8 @@ if( $myposts ){
                 <div class="popular-collections__card-img-data img-data">
                   <div class="popular-collections__card-autor-icon card-autor-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image2.webp" alt="some photo"></div>
                   <div class="popular-collections__card-info-name"><?php the_title();?></div></div>
+                  <div class="popular-collections__card-info-txt"><?php the_content();?></div></div>
                 </div>
-                <div class="popular-collections__card-info-txt"><?php the_content();?></div></div>
               </div>
 		<?php } } wp_reset_postdata(); ?>
 
@@ -199,9 +214,27 @@ if( $myposts ){
             <h2 class="explore__block-title-text">Explore By Categories</h2>
           </div>
           <div class="explore__cards cards">
-            <div class="explore__card card">
+<?php
+$myposts = get_posts([
+  'numberposts' => -1,
+	'orderby'     => 'date',
+	'order'       => 'DESC',
+  'category'    =>  6,
+]);
+$id = $post->ID;
+if( $myposts ){
+	foreach( $myposts as $post ){
+		setup_postdata( $post );
+		?>
+<div class="explore__card card">
               <div class="explore__card-img-wrapper">
-                <div class="explore__card-img"><img src="<?php echo get_template_directory_uri() ?>/assets/img/nft/nft_image5.webp" alt="some photo"></div>
+                <div class="explore__card-img">
+                <?php the_post_thumbnail(
+                  array(
+                    'class' => '',
+                    'alt' => 'some-text'
+                  ));?>
+                </div>
                 <div class="explore__card-button">Place a bid</div>
               </div>
               <div class="explore__card-info card-info">
@@ -209,22 +242,22 @@ if( $myposts ){
                   <div class="explore__card-img-data img-data">
                     <div class="explore__card-autor-icon card-autor-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image3.webp" alt="some photo"></div>
                     <div class="explore__card-img-info card-img-info">
-                      <div class="explore__card-img-name card-img-name">Virtual Art</div>
-                      <div class="explore__card-autor-name card-autor-name">by @wzard</div>
+                      <div class="explore__card-img-name card-img-name"><?php the_title();?></div>
+                      <div class="explore__card-autor-name card-autor-name"><?php the_content();?></div>
                     </div>
                   </div>
                   <div class="explore__card-likes card-likes">
                     <div class="explore__card-likes-icon card-likes-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/likes_icon.svg" alt="some photo"></div>
-                    <div class="explore__card-likes-value">92</div>
+                    <div class="explore__card-likes-value"><?php echo get_post_meta( $id, 'likes', true ); ?></div>
                   </div>
                 </div>
                 <div class="explore__card-bid card-bid">
                   <div class="explore__card-bid-txt bid-txt">Current Bid</div>
-                  <div class="explore__card-bid-value">4.89 ETH</div>
+                  <div class="explore__card-bid-value"><?php echo get_post_meta( $id, 'bid', true ); ?></div>
                 </div>
               </div>
             </div>
-
+<?php } } wp_reset_postdata(); ?>
           </div>
           <div class="explore__button button view-button">View All</div>
         </div>
@@ -236,54 +269,30 @@ if( $myposts ){
             <h2 class="top-creators__block-title-text">Top Creators</h2>
           </div>
           <div class="top-creators__creators">
-            <div class="top-creators__row">
+          <?php
+$myposts = get_posts([
+  'numberposts' => -1,
+	'orderby'     => 'date',
+	'order'       => 'DESC',
+  'category'    =>  7,
+]);
+$id = $post->ID;
+if( $myposts ){
+	foreach( $myposts as $post ){
+		setup_postdata( $post );
+		?>
               <div class="top-creators__creators-card">
                 <div class="top-creators__creator-photo"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image1.webp" alt="some photo"></div>
                 <div class="top-creators__creator-info card-img-info">
-                  <h3 class="top-creators__creator-name">Wzard Dee</h3>
-                  <div class="top-creators__creator-price">4.89 ETH</div>
+                  <h3 class="top-creators__creator-name"><?php the_title();?></h3>
+                  <div class="top-creators__creator-price"><?php the_content();?></div>
                 </div>
                 <div class="top-creators__creator-items creator-items">
-                  <div class="top-creators__creator-items-value">33</div>
+                  <div class="top-creators__creator-items-value"><?php echo get_post_meta( $id, 'items', true ); ?></div>
                   <div class="top-creators__creator-items-txt">items</div>
                 </div>
               </div>
-              <div class="top-creators__creators-card">
-                <div class="top-creators__creator-photo"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image2.webp" alt="some photo"></div>
-                <div class="top-creators__creator-info card-img-info">
-                  <h3 class="top-creators__creator-name">Wzard Dee</h3>
-                  <div class="top-creators__creator-price">4.89 ETH</div>
-                </div>
-                <div class="top-creators__creator-items creator-items">
-                  <div class="top-creators__creator-items-value">33</div>
-                  <div class="top-creators__creator-items-txt">items</div>
-                </div>
-              </div>
-            </div>
-            <div class="top-creators__row">
-              <div class="top-creators__creators-card">
-                <div class="top-creators__creator-photo"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image3.webp" alt="some photo"></div>
-                <div class="top-creators__creator-info card-img-info">
-                  <h3 class="top-creators__creator-name">Wzard Dee</h3>
-                  <div class="top-creators__creator-price">4.89 ETH</div>
-                </div>
-                <div class="top-creators__creator-items creator-items">
-                  <div class="top-creators__creator-items-value">33</div>
-                  <div class="top-creators__creator-items-txt">items</div>
-                </div>
-              </div>
-              <div class="top-creators__creators-card">
-                <div class="top-creators__creator-photo"><img src="<?php echo get_template_directory_uri() ?>/assets/img/profiles/profile_image4.webp" alt="some photo"></div>
-                <div class="top-creators__creator-info card-img-info">
-                  <h3 class="top-creators__creator-name">Wzard Dee</h3>
-                  <div class="top-creators__creator-price">4.89 ETH</div>
-                </div>
-                <div class="top-creators__creator-items creator-items">
-                  <div class="top-creators__creator-items-value">33</div>
-                  <div class="top-creators__creator-items-txt">items</div>
-                </div>
-              </div>
-            </div>
+              <?php } } wp_reset_postdata(); ?>
           </div><button class="top-creators__creators button view-button">View All</button>
         </div>
       </section>
@@ -294,7 +303,7 @@ if( $myposts ){
             <h2 class="subscribe__block-title-text">Ready for Next NFT Drop?</h2>
           </div>
           <div class="subscribe__block subscribe-block">
-            <form class="subscribe__email-input" action="http://foo.com" method="post"></form><input type="email" name="email" placeholder="info@gemail.com"><button class="subscribe__button button bg-button">Subscribe</button>
+            <?php echo do_shortcode('[contact-form-7 id="3c93e07" title="email form"]')?>
           </div>
         </div>
       </section>

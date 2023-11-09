@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php bloginfo('language'); ?>">
 
 <head>
-  <meta charset="UTF-8"><!--meta(name='viewport' content="1440px")-->
+  <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="format-detection" content="telephone=yes">
   <meta name="robots" content="all">
   <meta name="keywords" content="ключевые слова">
-  <meta name="description" content="Описание страницы сайта.">
+  <meta name="<?php bloginfo('description'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="<?php echo get_template_directory_uri() ?>/assets/img/logo.webp">
   <title>NFT Marketplace</title>
@@ -18,7 +18,7 @@ wp_head();
 <body>
   <div class="wrapper">
     <header class="header">
-      <div class="header__container container" id="header__container"><a class="header__logo logo" href="#" id="header__logo"> <img src="<?php echo get_template_directory_uri() ?>/assets/img/logo.webp" alt="some photo"></a>
+      <div class="header__container container" id="header__container"><div class="header__logo logo"><?php the_custom_logo(); ?></div>
         <nav class="header__menu menu menu-burger-content" id="menu-burger-content">
           <ul class="menu__list" id="menu__list">
             <li class="menu__item"><a class="menu__link active" href="#">Explore</a></li>

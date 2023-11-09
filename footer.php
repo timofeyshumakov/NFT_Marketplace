@@ -1,6 +1,6 @@
 <footer class="footer">
         <div class="footer__container container">
-          <div class="footer__content footer-block"><a class="footer__logo logo" href="#"><img src="<?php echo get_template_directory_uri() ?>/assets/img/logo.webp" alt="some photo"></a>
+          <div class="footer__content footer-block"><div class="footer__logo logo"><?php the_custom_logo(); ?></div>
             <div class="footer__column">
               <div class="footer__text">Nec, enim sed lacus, magna pharetra. Phasellus tincidunt nulla pharetra gravida est. </div>
               <div class="footer__media">
