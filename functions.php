@@ -20,4 +20,14 @@ function svg_upload_allow($mimes){
     $mimes['svg'] = 'image/svg+xml';
     return $mimes;
 }
+function register_my_menus() {
+    register_nav_menus(
+        array(
+            'main_menu' => 'Главное меню',
+            'footer_menu' => 'Меню footer',
+            'sections_headers' => 'заголовки секций'
+        )
+    );
+}
+add_action( 'init', 'register_my_menus' );
 ?>

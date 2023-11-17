@@ -1,10 +1,13 @@
 <?php 
 get_header();
-//поле из acf
-$string='1,,2,,3';
-$separator=',,';
-$world=explode($separator, $string);
 ?>
+<?php
+$section_header_number=0; 
+$section_headers_array=[];
+$section_headers = get_field("section-headers");
+foreach( $section_headers as $key => $value){
+array_push($section_headers_array, $value);
+}?>
     <main class="page">
       <section class="page__main-block main-block">
         <div class="main-block__container container">
@@ -12,24 +15,14 @@ $world=explode($separator, $string);
             <h1 class="main-block__block-title">Explore, Buy and Sell the <span class='title-highlight'> Best NFTs!</span></h1>
             <div class="main-block__buttons buttons"><button class="main-block__button button bg-button">Explore</button><button class="main-block__button button">Create</button></div>
             <div class="main-block__stats">
-              <?php foreach ($world as $value) {
-                echo '<div class="main-block__stats-block">';
-                echo '<div class="main-block__stats-title">'.$value.'</div>';
-                echo '<div class="main-block__stats-txt">'.$value.'</div>';
-                echo '</div>';
-              }?>
-              <div class="main-block__stats-block">
-                <div class="main-block__stats-title">32k+</div>
-                <div class="main-block__stats-txt">Artworks</div>
-              </div>
-              <div class="main-block__stats-block">
-                <div class="main-block__stats-title">20k+</div>
-                <div class="main-block__stats-txt">Auctions</div>
-              </div>
-              <div class="main-block__stats-block">
-                <div class="main-block__stats-title">12k+</div>
-                <div class="main-block__stats-txt">Creators</div>
-              </div>
+<?php
+$group_fields = get_field("stats");
+foreach( $group_fields as $key => $value){
+  echo '<div class="main-block__stats-block">';
+  echo '<div class="main-block__stats-txt">'.$key.'</div>';
+  echo '<div class="main-block__stats-title">'.$value.'</div>';
+  echo '</div>';
+}?>
             </div>
           </div>
           <div class="main-card">
@@ -75,7 +68,7 @@ $world=explode($separator, $string);
           <div class="live-auctions__title">
             <div class="live-auctions__title-container title-container">
               <div class="live-auctions__title-circle title-circle"></div>
-              <h2 class="live-auctions__block-title-text">Live Auctions</h2>
+              <h2 class="live-auctions__block-title-text"><?php echo $section_headers_array[$section_header_number]; ?></h2>
             </div>
             <div class="live-auctions__arrows">
               <div class="live-auctions__arrow"><img src="<?php echo get_template_directory_uri() ?>/assets/img/arrows/black-arrow.svg" alt="some photo"></div>
@@ -136,7 +129,7 @@ if( $myposts ){
         <div class="explain__container container cgap">
           <div class="explain__title-container title-container">
             <div class="explain__title-circle title-circle"></div>
-            <h2 class="explain__block-title-text">How it works</h2>
+            <h2 class="explain__block-title-text"><?php $section_header_number++; echo $section_headers_array[$section_header_number]; ?></h2>
           </div>
           <div class="explain__block">
 <?php
@@ -170,7 +163,7 @@ if( $myposts ){
         <div class="popular-collections__container container cgap">
           <div class="popular-collections__title-container title-container">
             <div class="popular-collections__title-circle title-circle"></div>
-            <h2 class="popular-collections__block-title-text">Popular Collections</h2>
+            <h2 class="popular-collections__block-title-text"><?php $section_header_number++; echo $section_headers_array[$section_header_number]; ?></h2>
           </div>
           <div class="popular-collections__cards cards">
           <?php
@@ -211,7 +204,7 @@ if( $myposts ){
         <div class="explore__container container cgap">
           <div class="explore__title-container title-container">
             <div class="explore__title-circle title-circle"></div>
-            <h2 class="explore__block-title-text">Explore By Categories</h2>
+            <h2 class="explore__block-title-text"><?php $section_header_number++; echo $section_headers_array[$section_header_number]; ?></h2>
           </div>
           <div class="explore__cards cards">
 <?php
@@ -266,7 +259,7 @@ if( $myposts ){
         <div class="top-creators__container container cgap">
           <div class="top-creators__title-container title-container">
             <div class="top-creators__title-circle title-circle"></div>
-            <h2 class="top-creators__block-title-text">Top Creators</h2>
+            <h2 class="top-creators__block-title-text"><?php $section_header_number++; echo $section_headers_array[$section_header_number]; ?></h2>
           </div>
           <div class="top-creators__creators">
           <?php
@@ -300,7 +293,7 @@ if( $myposts ){
         <div class="subscribe__bg"></div>
         <div class="subscribe__container container">
           <div class="subscribe__title-container title-container">
-            <h2 class="subscribe__block-title-text">Ready for Next NFT Drop?</h2>
+            <h2 class="subscribe__block-title-text"><?php $section_header_number++; echo $section_headers_array[$section_header_number]; ?></h2>
           </div>
           <div class="subscribe__block subscribe-block">
             <?php echo do_shortcode('[contact-form-7 id="3c93e07" title="email form"]')?>

@@ -15,6 +15,7 @@
             </div>
           </div>
           <div class="footer__nav footer-block">
+            <?php wp_nav_menu( array( 'theme_location' => 'footer_menu' ) ); ?>
             <div class="footer__list"><a class="footer__link" href="#">About Us</a><a class="footer__link" href="#">About NFTs</a><a class="footer__link" href="#">Live Auctions</a><a class="footer__link" href="#">NFT Blog</a><a class="footer__link" href="#">Activity</a></div>
             <div class="footer__list"><a class="footer__link" href="#">Support</a><a class="footer__link" href="#">Help &amp; Support</a><a class="footer__link" href="#">Item Details</a><a class="footer__link" href="#">Author Profile</a><a class="footer__link" href="#">Collection</a></div>
           </div>
@@ -32,7 +33,7 @@
       <section class="popup" id="popup">
         <div class="popup__container container" id="popup__container">
           <div class="popup__title-container title-container">
-            <h2 class="popup__block-title-text">Ready for Next NFT Drop?</h2>
+            <h2 class="popup__block-title-text"><?php echo $section_headers_array[$section_header_number]; ?></h2>
           </div>
           <div class="popup__block subscribe-block">
             <form class="popup__email-input" action="http://foo.com" method="post"></form><input type="email" name="email" placeholder="example@email.ru"><button class="popup__button button bg-button">Subscribe</button>
