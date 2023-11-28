@@ -11,6 +11,7 @@ function strategy_assets() {
 add_action( 'wp_enqueue_scripts', 'strategy_assets' );
 show_admin_bar(false);
 
+add_filter('acf/settings/remove_wp_meta_box', '__return_false');
 add_theme_support('post-thumbnails');
 add_theme_support('title-tag');
 add_theme_support('custom-logo');
@@ -30,4 +31,38 @@ function register_my_menus() {
     );
 }
 add_action( 'init', 'register_my_menus' );
+
+add_filter( 'wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5 );
+
+# Исправление MIME типа для SVG файлов.
+function fix_svg_mime_type( $data, $file, $filename, $mimes, $real_mime = '' ){
+
+	// WP 5.1 +
+	if( version_compare( $GLOBALS['wp_version'], '5.1.0', '>=' ) ){
+		$dosvg = in_array( $real_mime, [ 'image/svg', 'image/svg+xml' ] );
+	}
+	else {
+		$dosvg = ( '.svg' === strtolower( substr( $filename, -4 ) ) );
+	}
+
+	// mime тип был обнулен, поправим его
+	// а также проверим право пользователя
+	if( $dosvg ){
+
+		// разрешим
+		if( current_user_can('manage_options') ){
+
+			$data['ext']  = 'svg';
+			$data['type'] = 'image/svg+xml';
+		}
+		// запретим
+		else {
+			$data['ext']  = false;
+			$data['type'] = false;
+		}
+
+	}
+
+	return $data;
+}
 ?>

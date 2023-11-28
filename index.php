@@ -52,14 +52,26 @@ foreach( $group_fields as $key => $value){
         </div>
         <div class="page__clients clients">
           <div class="clients__container container fdr cgap">
-            <div class="clients__row">
-              <div class="clients__img"> <img src="<?php echo get_template_directory_uri() ?>/assets/img/clients/clients1.svg" alt="some photo"></div>
-              <div class="clients__img"> <img src="<?php echo get_template_directory_uri() ?>/assets/img/clients/clients2.svg" alt="some photo"></div>
-            </div>
-            <div class="clients__row">
-              <div class="clients__img"> <img src="<?php echo get_template_directory_uri() ?>/assets/img/clients/clients3.svg" alt="some photo"></div>
-              <div class="clients__img"> <img src="<?php echo get_template_directory_uri() ?>/assets/img/clients/clients4.svg" alt="some photo"></div>
-            </div>
+          <?php
+$myposts = get_posts([
+  'numberposts' => -1,
+	'orderby'     => 'date',
+	'order'       => 'DESC',
+  'category'    =>  19,
+]);
+$id = $post->ID;
+if( $myposts ){
+	foreach( $myposts as $post ){
+	setup_postdata( $post );
+?>
+<div class="clients__img">
+<?php the_post_thumbnail(
+                  array(
+                    'class' => 'clients__img',
+                    'alt' => 'some-text'
+                  ));?>
+</div>
+<?php } } wp_reset_postdata(); ?>
           </div>
         </div>
       </section>
@@ -71,8 +83,8 @@ foreach( $group_fields as $key => $value){
               <h2 class="live-auctions__block-title-text"><?php echo $section_headers_array[$section_header_number]; ?></h2>
             </div>
             <div class="live-auctions__arrows">
-              <div class="live-auctions__arrow"><img src="<?php echo get_template_directory_uri() ?>/assets/img/arrows/black-arrow.svg" alt="some photo"></div>
-              <div class="live-auctions__arrow"><img src="<?php echo get_template_directory_uri() ?>/assets/img/arrows/white-arrow.svg" alt="some photo"></div>
+              <div class="live-auctions__arrow" ><img src="<?php echo get_template_directory_uri() ?>/assets/img/arrows/black-arrow.svg" alt="some photo" id="live-auctions-back-arrow"></div>
+              <div class="live-auctions__arrow" ><img src="<?php echo get_template_directory_uri() ?>/assets/img/arrows/white-arrow.svg" alt="some photo" id="live-auctions-next-arrow"></div>
             </div>
           </div>
           <div class="live-auctions__cards cards">
@@ -267,7 +279,7 @@ $myposts = get_posts([
   'numberposts' => -1,
 	'orderby'     => 'date',
 	'order'       => 'DESC',
-  'category'    =>  7,
+  'category'    =>  16,
 ]);
 $id = $post->ID;
 if( $myposts ){
