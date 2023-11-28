@@ -293,9 +293,13 @@
     background: linear-gradient(rgba(79, 70, 78, 0.4509803922) 100%) right/45% no-repeat;
     position: relative;
 }
-
-.live-auctions__card-img {
+.live-auctions__card-img-wrapper{
     position: relative;
+}
+.card-img img{
+    position: relative;
+    max-height: 300px;
+    max-width: 350px;
 }
 
 .main-card__wrapper {
@@ -371,10 +375,6 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-}
-
-.active {
-    color: #FFCE4E;
 }
 
 .header__container {
@@ -513,6 +513,7 @@ img {
 .clients__img img {
     min-width: 100px;
     height: 100%;
+    cursor: pointer;
 }
 
 .top-creators__creator-photo {
@@ -578,11 +579,6 @@ img {
     background: #302034;
 }
 
-header a {
-    color: #F5FBF2;
-    font: 500 18px Work Sans, sans-serif;
-    letter-spacing: 0.36px;
-}
 
 .cards {
     display: -webkit-box;
@@ -661,7 +657,12 @@ body {
     background-color: rgba(233, 215, 167, 0.1);
     color: #F5FBF2;
 }
-
+.card-autor-icon{
+    cursor: pointer;
+}
+.live-auctions__arrow{
+    cursor: pointer;
+}
 .button {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -674,6 +675,7 @@ body {
     justify-content: center;
     border-radius: 0;
     border: 1px solid #FFCE4E;
+    cursor: pointer;
 }
 
 .popular-collections__card-img img {
@@ -925,8 +927,8 @@ h2 {
     display: -ms-flexbox;
     display: flex;
     gap: clamp(2.5rem, 6.25vw, 6.25rem);
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .main-block__stats-block {
@@ -1044,7 +1046,7 @@ h2 {
 
 .footer__logo img {
     width: clamp(6.25rem, 11.25vw, 11.25rem);
-    aspect-ratio: 1;
+    height: clamp(6.25rem, 11.25vw, 11.25rem);
 }
 
 .footer__container {
@@ -1141,6 +1143,7 @@ h2 {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .footer__link {
@@ -1209,7 +1212,28 @@ h2 {
     font-size: 28px;
     font-weight: bold;
 }
-
+.wpcf7s{
+    display: -webkit-box;
+    display: -ms-flexbox;
+display: flex;
+}
+.wpcf7-form-control-wrap input{
+    height: 102px;
+}
+.wpcf7-form p{
+    display: -webkit-box;
+    display: -ms-flexbox;
+display: flex;
+flex-direction: row;
+-ms-flex-wrap: wrap;
+flex-wrap: wrap;
+-webkit-box-pack: center;
+-ms-flex-pack: center;
+justify-content: center;
+}
+.wpcf7-spinner{
+    display: none;
+}
 .close:hover,
 .close:focus {
     color: black;

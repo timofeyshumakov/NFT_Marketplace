@@ -1,20 +1,26 @@
 //adaptive
+
 var title = document.getElementsByClassName('live-auctions__title');
 var arrows = document.getElementsByClassName('live-auctions__arrows');
 var cw = 0;
 var burgerClick = 0;
-var item = '';
+var item = [];
 var i=0;
 var ii=0;
 var ww=[];
-
+var countCards = 0;
 function adaptive() {
+
 const items = document.getElementsByClassName('cards');
+
 for( i=0; i<items.length; i++) {
-  item = items[i].childNodes;
+  item = items[i].getElementsByClassName('card');
+
   ww[i]=0;
-  ww[i] = parseInt(getComputedStyle(item[i]).minWidth) + parseInt(getComputedStyle(item[i]).gap) * (items.length+1);
-if(Math.floor(window.screen.width/ ww[i]) < 3){
+  ww[i] = parseInt(getComputedStyle(item[0]).minWidth) + parseInt(getComputedStyle(item[0]).gap) * (items.length+1);
+countCards = Math.floor(window.screen.width/ ww[i]);
+if(item.length === 3){
+if(countCards < 3){
   arrows[0].style.justifyContent = 'center';
   arrows[0].style.position = 'relative';
   title[0].style.flexDirection = 'column';
@@ -24,27 +30,42 @@ else{
   arrows[0].style.justifyContent = 'center';
   arrows[0].style.position = 'absolute';
 }
-if(Math.floor(window.screen.width/ ww[i]) === 2){
-  item[item.length-1].style.display='none';
-  item[item.length-2].style.display='flex';
+if(countCards === 2){
+  item[2].style.display='none';
+  item[1].style.display='flex';
 }
-else if(Math.floor(window.screen.width/ ww[i]) === 1){
-  item[item.length-1].style.display='none';
-  item[item.length-2].style.display='none';
+else if(countCards === 1){
+  item[2].style.display='none';
+  item[1].style.display='none';
 }
-else if(Math.floor(window.screen.width/ ww[i]) > 2){
-  item[item.length-1].style.display='flex';
-  item[item.length-2].style.display='flex';
+else if(countCards > 2){
+  item[2].style.display='flex';
+  item[1].style.display='flex';
+  for( i=0; i<countCards; i++) {
+  item[i].style.width= '33%';
+  }
+}
+}
+if(item.length === 2){
+  for( i=0; i<countCards; i++) {
+    item[i].style.width= '50%';
+    }
+}
+if(item.length > 3){
+  for( i=3; i<item.length; i++) {
+    item[i].style.display='none';
+    }
 }
 }
 var hidenArrow = document.getElementsByClassName('hiden-arrow');
 if(window.screen.width < 1024 && window.screen.width > 768){
   
-  hidenArrow[0].style.display = 'none';
+  //hidenArrow[0].style.display = 'none';
 }
 else{
-  hidenArrow[0].style.display = 'flex';
+  //hidenArrow[0].style.display = 'flex';
 }
+slider(countCards,item);
 }
 
 
@@ -55,24 +76,29 @@ window.onresize = function( event ) {
 };
 let timerDuration = 0;
 document.addEventListener("DOMContentLoaded", () => {
-
+  
   var items = document.getElementById('header__container').childNodes;
 
 for( i=0; i<items.length; i++) {
-cw = cw + parseInt(getComputedStyle(items[i]).width);
+  if(items[i].id != undefined){
+    cw = cw + parseInt(getComputedStyle(items[i]).width);
+  }
 }
+
+cw=cw+20;
   burger(cw);
   adaptive();
   popup();
   });
-//timer
 
 
 
 //popup
 function popup() {
+  var descript = document.getElementsByClassName('timer');
   timerPopupDuration = 20;
-  timerDuration= 11904;
+  timerDuration= (descript[0].innerHTML).split(":");
+  timerDuration= timerDuration[0]*3600+timerDuration[1]*60+timerDuration[2]*1;
   timerRestart= timerDuration;
   var popupActivate=0;
 const items = document.getElementsByClassName('popup__container');
@@ -120,6 +146,7 @@ var span = document.getElementsByClassName("close")[0];
 }
 
    window.onclick = function(event) {
+
      if (event.target != document.getElementById("popup__container")) {
       document.getElementById("popup__container").style.display = "none";
      }
@@ -141,7 +168,7 @@ else{
 
 window.onclick = function(event) {
 var menuBurgerContent = document.getElementById('menu-burger-content');
-var menuList = document.getElementById('menu__list');
+var menuList = document.getElementById('mega-menu-wrap-main_menu');
 var headerButton = document.getElementById('header__button');
   if (event.target.id == 'menu-burger') {
     if (burgerClick == 0) {
@@ -156,11 +183,48 @@ var headerButton = document.getElementById('header__button');
 else{
   menuBurgerContent.style.display = "none";
   document.getElementById('header__container').style.flexDirection = 'row';
+  document.getElementById('menu-burger-content').style.flexDirection = 'row';
   burgerClick = 0;
 }
 }
 }
 }
-//scroll
+//slider
+let currentItem = 0;
+var nextArrow = document.getElementById('live-auctions-next-arrow');
+function slider(countCards,item) {
+window.onclick = function(event) {
+if(currentItem != countCards-1){
+if (event.target.id === 'live-auctions-next-arrow') {
+if(countCards === 2){
+  currentItem++;
+  alert(currentItem);
+  item = document.getElementsByClassName('live-auctions__card');
+  item[currentItem-1].style.display='none';
+  item[currentItem+1].style.display='flex';
+}
+}
+}
+if(currentItem != 0){
+if (event.target.id === 'live-auctions-back-arrow') {
+if(countCards === 2){
+  currentItem--;
+  alert(currentItem);
+  item = document.getElementsByClassName('live-auctions__card');
+  item[currentItem+2].style.display='none';
+  item[currentItem].style.display='flex';
+}
+}
+}
+}
+}
 
+
+
+  
+
+
+    
+  
+  
 
