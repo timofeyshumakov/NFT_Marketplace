@@ -41,9 +41,6 @@ else if(countCards === 1){
 else if(countCards > 2){
   item[2].style.display='flex';
   item[1].style.display='flex';
-  for( i=0; i<countCards; i++) {
-  item[i].style.width= '33%';
-  }
 }
 }
 if(item.length === 2){
@@ -65,7 +62,6 @@ if(window.screen.width < 1024 && window.screen.width > 768){
 else{
   //hidenArrow[0].style.display = 'flex';
 }
-slider(countCards,item);
 }
 
 
@@ -191,36 +187,28 @@ else{
 }
 //slider
 let currentItem = 0;
-var nextArrow = document.getElementById('live-auctions-next-arrow');
-function slider(countCards,item) {
-window.onclick = function(event) {
-if(currentItem != countCards-1){
-if (event.target.id === 'live-auctions-next-arrow') {
-if(countCards === 2){
-  currentItem++;
-  alert(currentItem);
-  item = document.getElementsByClassName('live-auctions__card');
-  item[currentItem-1].style.display='none';
-  item[currentItem+1].style.display='flex';
+function backArrowOnclick(){
+  if(currentItem != 0){
+      currentItem--;
+      item = document.getElementsByClassName('live-auctions__card');
+      item[currentItem+countCards].style.display='none';
+      item[currentItem].style.display='flex';
+    }
 }
+function nextArrowOnclick() {
+  if(currentItem != item.length-countCards){
+      item = document.getElementsByClassName('live-auctions__card');
+      item[currentItem].style.display='none';
+      currentItem++;
+      for(i=0; i<countCards; i++){
+      item[currentItem+i].style.display='flex';
+      }
+      
+    }
 }
+function likesOnclick() {
+  
 }
-if(currentItem != 0){
-if (event.target.id === 'live-auctions-back-arrow') {
-if(countCards === 2){
-  currentItem--;
-  alert(currentItem);
-  item = document.getElementsByClassName('live-auctions__card');
-  item[currentItem+2].style.display='none';
-  item[currentItem].style.display='flex';
-}
-}
-}
-}
-}
-
-
-
   
 
 
