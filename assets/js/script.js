@@ -9,6 +9,7 @@ var i=0;
 var ii=0;
 var ww=[];
 var countCards = 0;
+var sliderWidth = 0;
 function adaptive() {
 
 const items = document.getElementsByClassName('cards');
@@ -27,23 +28,23 @@ if(countCards < 3){
   arrows[0].style.justifyContent = 'center';
   arrows[0].style.position = 'relative';
   title[0].style.flexDirection = 'column';
+
 }
 else{
   title[0].style.flexDirection = 'row';
   arrows[0].style.justifyContent = 'center';
   arrows[0].style.position = 'absolute';
+  countCards = 3;
 }
-if(countCards === 2){
-  //item[2].style.display='none';
-  item[1].style.display='flex';
+
+if (i === 0){
+  sliderWidth =  item[0].offsetWidth * countCards + parseInt(getComputedStyle(items[0]).gap) * (countCards-1) + 'px';
+  items[0].style.width = sliderWidth;
+  cardWidth = item[0].offsetWidth + parseInt(getComputedStyle(items[0]).gap) ;
 }
-else if(countCards === 1){
-  item[2].style.display='none';
-  item[1].style.display='none';
-}
-else if(countCards > 2){
-  item[2].style.display='flex';
-  item[1].style.display='flex';
+if (currentItem >= item.length-countCards){
+  currentItem= item.length-countCards;
+  slider[0].style.left = -currentItem * cardWidth + 'px';
 }
 }
 if(item.length === 2){
@@ -95,10 +96,19 @@ cw=cw+20;
 //popup
 function popup() {
   var descript = document.getElementsByClassName('timer');
+  var timerDuration = [];
+  var hours = [];
+  var minutes = [];
+  var seconds = [];
+  //var timerToNumber = [];
   timerPopupDuration = 20;
-  timerDuration= (descript[0].innerHTML).split(":");
-  timerDuration= timerDuration[0]*3600+timerDuration[1]*60+timerDuration[2]*1;
-  timerRestart= timerDuration;
+
+  for (i = 0; i < descript.length; i++){
+  timerToNumber= (descript[i].innerHTML).split(":");
+  timerDuration[i]= timerToNumber[0]*3600+timerToNumber[1]*60+timerToNumber[2]*1;
+  }
+  
+  //timerRestart= timerDuration;
   var popupActivate=0;
 const items = document.getElementsByClassName('popup__container');
 
@@ -106,30 +116,27 @@ var modal = document.getElementById("popup__container");
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 
+timers= document.getElementsByClassName('timer');
  function updateTimer() {
-  if (timerDuration <= 0) {
-    timerDuration= timerRestart;
+  if (timerDuration[0] <= 0) {
+    //timerDuration= timerRestart;
   } else {
-  timerDuration--;
-  hours= Math.floor(timerDuration/3600);
-  minutes= Math.floor(timerDuration/ 60) - hours*60;
-  seconds= timerDuration-minutes*60 - hours*3600;
-  if (hours < 10){
-    hours= '0' + hours;
-  }
-  if (minutes < 10){
-    minutes= '0' + minutes;
-  }
-  if (seconds < 10){
-    seconds= '0' + seconds;
-  }
-  timers= document.getElementsByClassName('timer');
-
-  for(var i=0; i< timers.length; i++){
-    timers[i].innerText=hours + ':' + minutes + ':' + seconds;
-    
-  }
-  
+    for (i = 0; i < descript.length; i++){
+      timerDuration[i]--;
+      hours[i]= Math.floor(timerDuration[i]/3600);
+      minutes[i]= Math.floor(timerDuration[i]/ 60) - hours[i]*60;
+      seconds[i]= timerDuration[i]-minutes[i]*60 - hours[i]*3600;
+      if (hours[i] < 10){
+        hours[i]= '0' + hours[i];
+      }
+      if (minutes[i] < 10){
+        minutes[i]= '0' + minutes[i];
+      }
+      if (seconds[i] < 10){
+        seconds[i]= '0' + seconds[i];
+      }
+      timers[i].innerText= hours[i] + ':' + minutes[i] + ':' + seconds[i];
+    }
   }
 
 
@@ -190,21 +197,19 @@ else{
 }
 //slider
 let currentItem = 0;
-let offset = 0;
-slider = document.getElementsByClassName('live-auctions__cards');
+slider = document.getElementsByClassName('live-auctions__slider');
+
 function backArrowOnclick(){
-  if(offset < 0){
-      item = document.getElementsByClassName('live-auctions__card');
-      offset += 300;
-      slider[0].style.left = offset + 'px';
-    }
+  if(currentItem > 0){
+    currentItem--;
+    slider[0].style.left = -currentItem * cardWidth + 'px';
+   }
 }
 function nextArrowOnclick() {
-  if(offset > (item.length-countCards) * -300 ){
-      item = document.getElementsByClassName('live-auctions__card');
-      offset -= 300;
-      slider[0].style.left = offset + 'px';
-    }
+  if(currentItem <= item.length-countCards-1){
+    currentItem++;
+    slider[0].style.left = -currentItem * cardWidth + 'px';
+  }
 }
 function likesOnclick() {
   

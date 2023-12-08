@@ -96,7 +96,9 @@
         display: -ms-flexbox;
         display: flex;
     }
-
+    .explain__illustration-item:nth-child(even) .explain__illustration-arrow{
+        display: none;
+    }
     .clients__container {
         -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
@@ -126,6 +128,12 @@
 @media screen and (min-width: 1023.25px) {
     .main-card {
         position: absolute;
+    }
+    .explain__illustration-item:nth-child(even) .explain__illustration-arrow{
+        display: flex;
+    }
+    .explain__illustration-item:last-child .explain__illustration-arrow{
+        display: none;
     }
 
     .main-block__container {
@@ -267,7 +275,9 @@
         align-items: flex-end;
         margin-left: -30px;
     }
-
+    .explain__illustration-item:last-child .explain__illustration-arrow{
+        display: none;
+    }
     .explain__block {
         grid-template-columns: 1fr;
     }
@@ -612,6 +622,14 @@ img {
 .live-auctions__container{
     overflow: hidden;
 }
+.live-auctions__slider{
+width: 2688px;
+display: flex;
+transition: all 1s linear;
+position: relative;
+justify-content: flex-start;
+gap: 30px;
+}
 body {
     font-family: Work Sans, sans-serif;
     font-weight: 500;
@@ -621,8 +639,8 @@ body {
 }
 .live-auctions__cards{
     position: relative;
-    left: 300px;
-    transition: all 1s linear;
+    left: 0px;
+    justify-content: flex-start;
 }
 .live-auctions__card-button {
     font: 500 clamp(1rem, 1.5vw, 1.5rem) Work Sans;
