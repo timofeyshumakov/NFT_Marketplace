@@ -96,7 +96,9 @@
         display: -ms-flexbox;
         display: flex;
     }
-
+    .explain__illustration-item:nth-child(even) .explain__illustration-arrow{
+        display: none;
+    }
     .clients__container {
         -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
@@ -126,6 +128,12 @@
 @media screen and (min-width: 1023.25px) {
     .main-card {
         position: absolute;
+    }
+    .explain__illustration-item:nth-child(even) .explain__illustration-arrow{
+        display: flex;
+    }
+    .explain__illustration-item:last-child .explain__illustration-arrow{
+        display: none;
     }
 
     .main-block__container {
@@ -267,7 +275,9 @@
         align-items: flex-end;
         margin-left: -30px;
     }
-
+    .explain__illustration-item:last-child .explain__illustration-arrow{
+        display: none;
+    }
     .explain__block {
         grid-template-columns: 1fr;
     }
@@ -293,9 +303,13 @@
     background: linear-gradient(rgba(79, 70, 78, 0.4509803922) 100%) right/45% no-repeat;
     position: relative;
 }
-
-.live-auctions__card-img {
+.live-auctions__card-img-wrapper{
     position: relative;
+}
+.card-img img{
+    position: relative;
+    max-height: 300px;
+    max-width: 350px;
 }
 
 .main-card__wrapper {
@@ -371,10 +385,6 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-}
-
-.active {
-    color: #FFCE4E;
 }
 
 .header__container {
@@ -513,6 +523,7 @@ img {
 .clients__img img {
     min-width: 100px;
     height: 100%;
+    cursor: pointer;
 }
 
 .top-creators__creator-photo {
@@ -576,13 +587,10 @@ img {
     gap: 1rem;
     padding: 1.5625rem clamp(0.9375rem, 1.875vw, 1.875rem);
     background: #302034;
+    
 }
 
-header a {
-    color: #F5FBF2;
-    font: 500 18px Work Sans, sans-serif;
-    letter-spacing: 0.36px;
-}
+
 
 .cards {
     display: -webkit-box;
@@ -592,6 +600,7 @@ header a {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .autorization__login-text {
@@ -610,7 +619,17 @@ header a {
     display: flex;
     gap: clamp(1.25rem, 3.125vw, 3.125rem);
 }
-
+.live-auctions__container{
+    overflow: hidden;
+}
+.live-auctions__slider{
+width: 2688px;
+display: flex;
+transition: all 1s linear;
+position: relative;
+justify-content: flex-start;
+gap: 30px;
+}
 body {
     font-family: Work Sans, sans-serif;
     font-weight: 500;
@@ -618,7 +637,11 @@ body {
     color: #F5FBF2;
     background-color: #16091B;
 }
-
+.live-auctions__cards{
+    position: relative;
+    left: 0px;
+    justify-content: flex-start;
+}
 .live-auctions__card-button {
     font: 500 clamp(1rem, 1.5vw, 1.5rem) Work Sans;
     font-size: 24px;
@@ -661,7 +684,12 @@ body {
     background-color: rgba(233, 215, 167, 0.1);
     color: #F5FBF2;
 }
-
+.card-autor-icon{
+    cursor: pointer;
+}
+.live-auctions__arrow{
+    cursor: pointer;
+}
 .button {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -674,6 +702,7 @@ body {
     justify-content: center;
     border-radius: 0;
     border: 1px solid #FFCE4E;
+    cursor: pointer;
 }
 
 .popular-collections__card-img img {
@@ -759,6 +788,7 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    cursor: pointer;
 }
 
 .card-likes {
@@ -925,8 +955,8 @@ h2 {
     display: -ms-flexbox;
     display: flex;
     gap: clamp(2.5rem, 6.25vw, 6.25rem);
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .main-block__stats-block {
@@ -1044,7 +1074,7 @@ h2 {
 
 .footer__logo img {
     width: clamp(6.25rem, 11.25vw, 11.25rem);
-    aspect-ratio: 1;
+    height: clamp(6.25rem, 11.25vw, 11.25rem);
 }
 
 .footer__container {
@@ -1141,6 +1171,7 @@ h2 {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .footer__link {
@@ -1209,7 +1240,28 @@ h2 {
     font-size: 28px;
     font-weight: bold;
 }
-
+.wpcf7s{
+    display: -webkit-box;
+    display: -ms-flexbox;
+display: flex;
+}
+.wpcf7-form-control-wrap input{
+    height: 102px;
+}
+.wpcf7-form p{
+    display: -webkit-box;
+    display: -ms-flexbox;
+display: flex;
+flex-direction: row;
+-ms-flex-wrap: wrap;
+flex-wrap: wrap;
+-webkit-box-pack: center;
+-ms-flex-pack: center;
+justify-content: center;
+}
+.wpcf7-spinner{
+    display: none;
+}
 .close:hover,
 .close:focus {
     color: black;
