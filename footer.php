@@ -16,8 +16,7 @@
           </div>
           <div class="footer__nav footer-block">
             <?php wp_nav_menu( array( 'theme_location' => 'footer_menu' ) ); ?>
-            <div class="footer__list"><a class="footer__link" href="#">About Us</a><a class="footer__link" href="#">About NFTs</a><a class="footer__link" href="#">Live Auctions</a><a class="footer__link" href="#">NFT Blog</a><a class="footer__link" href="#">Activity</a></div>
-            <div class="footer__list"><a class="footer__link" href="#">Support</a><a class="footer__link" href="#">Help &amp; Support</a><a class="footer__link" href="#">Item Details</a><a class="footer__link" href="#">Author Profile</a><a class="footer__link" href="#">Collection</a></div>
+            <?php wp_nav_menu( array( 'theme_location' => 'footer_menu2' ) ); ?>
           </div>
           <div class="footer__media footer-bottom">
             <div class="footer__social">

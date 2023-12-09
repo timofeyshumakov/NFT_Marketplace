@@ -26,6 +26,7 @@ function register_my_menus() {
         array(
             'main_menu' => 'Главное меню',
             'footer_menu' => 'Меню footer',
+			'footer_menu2' => 'Меню footer2',
             'sections_headers' => 'заголовки секций'
         )
     );
@@ -65,4 +66,8 @@ function fix_svg_mime_type( $data, $file, $filename, $mimes, $real_mime = '' ){
 
 	return $data;
 }
+
+add_theme_support( 'title-tag' );
+
+
 ?>

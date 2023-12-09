@@ -65,11 +65,12 @@ if( $myposts ){
 	setup_postdata( $post );
 ?>
 <div class="clients__img">
-<?php the_post_thumbnail(
-                  array(
-                    'class' => 'clients__img',
-                    'alt' => 'some-text'
-                  ));?>
+<?php 
+  echo '<a href='.get_post_meta( $id, 'link', true ).' '.'target="blank">';
+  $alt = get_post_meta( get_post_thumbnail_id( $id ), '_wp_attachment_image_alt', true );
+  the_post_thumbnail('post-thumbnail', ['class' => 'img-responsive responsive--full', 'title' => $alt]);
+?>
+</a>
 </div>
 <?php } } wp_reset_postdata(); ?>
           </div>
@@ -83,12 +84,12 @@ if( $myposts ){
               <h2 class="live-auctions__block-title-text"><?php echo $section_headers_array[$section_header_number]; ?></h2>
             </div>
             <div class="live-auctions__arrows">
-              <div class="live-auctions__arrow" ><img src="<?php echo get_template_directory_uri() ?>/assets/img/arrows/black-arrow.svg" alt="some photo" id="live-auctions-back-arrow"></div>
-              <div class="live-auctions__arrow" ><img src="<?php echo get_template_directory_uri() ?>/assets/img/arrows/white-arrow.svg" alt="some photo" id="live-auctions-next-arrow"></div>
+              <div class="live-auctions__arrow" ><img src="<?php echo get_template_directory_uri() ?>/assets/img/arrows/black-arrow.svg" alt="some photo" id="live-auctions-back-arrow" onclick="backArrowOnclick()"></div>
+              <div class="live-auctions__arrow" ><img src="<?php echo get_template_directory_uri() ?>/assets/img/arrows/white-arrow.svg" alt="some photo" id="live-auctions-next-arrow" onclick="nextArrowOnclick()"></div>
             </div>
           </div>
           <div class="live-auctions__cards cards">
-
+          <div class="live-auctions__slider">
 <?php
 global $post;
 $myposts = get_posts([
@@ -122,8 +123,8 @@ if( $myposts ){
                     </div>
                   </div>
                   <div class="live-auctions__card-likes card-likes">
-                    <div class="live-auctions__card-likes-icon card-likes-icon"><img src="<?php echo get_template_directory_uri() ?>/assets/img/likes_icon.svg" alt="some photo"></div>
-                    <div class="live-auctions__card-likes-value"><?php echo get_post_meta( $id, 'likes', true ); ?></div>
+                    <div class="live-auctions__card-likes-icon card-likes-icon" onclick="likesOnclick()" ><img src="<?php echo get_template_directory_uri() ?>/assets/img/likes_icon.svg" alt="some photo"></div>
+                    <div class="live-auctions__card-likes-value" id="live-auctions-likes-1"><?php echo get_post_meta( $id, 'likes', true ); ?></div>
                   </div>
                 </div>
                 <div class="live-auctions__card-bid card-bid">
@@ -134,6 +135,7 @@ if( $myposts ){
               </div>
             </div>
 		<?php } } wp_reset_postdata(); ?>
+        </div>
         </div>
       </section>
 
@@ -205,9 +207,9 @@ if( $myposts ){
                   <div class="popular-collections__card-info-name"><?php the_title();?></div></div>
                   <div class="popular-collections__card-info-txt"><?php the_content();?></div></div>
                 </div>
-              </div>
+              
 		<?php } } wp_reset_postdata(); ?>
-
+        </div>
           <div class="popular-collections__arrow"></div>
           <div class="popular-collections__button button view-button">View All</div>
         </div>
