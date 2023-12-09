@@ -1,3 +1,12 @@
+::-webkit-scrollbar {
+    width: 10px;
+    background: rgba(0, 0, 0, 0);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #302034;
+    border-radius: 10px;
+    height: 20vh;
+  }
 .container {
     display: -webkit-box;
     display: -ms-flexbox;

@@ -16,9 +16,9 @@ const items = document.getElementsByClassName('cards');
 
 for( i=0; i<items.length; i++) {
   item = items[i].getElementsByClassName('card');
-
   ww[i]=0;
   ww[i] = parseInt(getComputedStyle(item[0]).minWidth) + parseInt(getComputedStyle(item[0]).gap) * (items.length+1);
+
 countCards = Math.floor(window.screen.width/ ww[i]);
 if (countCards < 1){
   countCards = 1;
@@ -42,10 +42,23 @@ if (i === 0){
   items[0].style.width = sliderWidth;
   cardWidth = item[0].offsetWidth + parseInt(getComputedStyle(items[0]).gap) ;
 }
+else{
+  console.log(countCards);
+  for(ii = countCards-1; ii < item.length-1; ii++){
+    item[ii].style.display = 'none';
+  }
+  for(ii = 0; ii < countCards - 1; ii++){
+    item[ii].style.display = 'flex';
+  }
+}
 if (currentItem >= item.length-countCards){
   currentItem= item.length-countCards;
   slider[0].style.left = -currentItem * cardWidth + 'px';
 }
+
+
+
+
 }
 if(item.length === 2){
   for( i=0; i<countCards; i++) {
