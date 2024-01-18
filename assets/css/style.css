@@ -56,7 +56,9 @@
     line-height: 100%;
     letter-spacing: 1.6px;
 }
-
+.explain__illustration-arrow img{
+    max-width: 100%;
+}
 .explain__illustration-txt {
     color: #FFCE4E;
     font-weight: 600;
@@ -72,7 +74,7 @@
     line-height: 178%;
 }
 
-.main-img__img img {
+.main-card__img img {
     max-width: 100%;
 }
 
@@ -317,8 +319,8 @@
 }
 .card-img img{
     position: relative;
-    max-height: 300px;
-    max-width: 350px;
+    height: 300px;
+    width: 350px;
 }
 
 .main-card__wrapper {
@@ -525,10 +527,6 @@
     opacity: 0.5;
 }
 
-img {
-    max-width: 100%;
-}
-
 .clients__img img {
     min-width: 100px;
     height: 100%;
@@ -712,11 +710,6 @@ body {
     border-radius: 0;
     border: 1px solid #FFCE4E;
     cursor: pointer;
-}
-
-.popular-collections__card-img img {
-    aspect-ratio: 1.66;
-    width: 100%;
 }
 
 .popular-collections__card-info {
